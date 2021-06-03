@@ -1,1 +1,1 @@
-# analytic_site
+# NHL Contract Predictor Tool
