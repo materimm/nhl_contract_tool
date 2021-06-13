@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>NHL Contract Predictor</h1>
+  </div>
+
+  <div class="row">
+    <span class="label">Teams:</span>
+    <select class="ml-3 form-select" name="teams" id="teams" onchange="getPlayers()">
+      <option value="none" selected>Pick a team to see players</option>
+      <option value="Coyotes">Arizona Coyotes</option>
+      <option value="Sabres">Buffalo Sabres</option>
+      <option value="Hurricanes">Carolina Hurricanes</option>
+      <option value="Devils">New Jersey Devils</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <span class="label">Players:</span>
+    <select class="ml-3 form-select" name="players" id="players" disabled>
+      <option value="none" selected>Select a team first to select a player</option>
+      <option value="Jack Eichel">Jack Eichel</option>
+      <option value="Jeff Skinner">Jeff Skinner</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <!-- table -->
+  </div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  <!-- Custom JavaScript -->
+
+{% endblock %}
