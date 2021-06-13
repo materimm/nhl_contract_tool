@@ -1,9 +1,11 @@
 import json
+from pathlib import Path
 import os
 
-base_dir = os.getcwd().parents[0]
+base_dir = str(Path(os.getcwd()))
 
-get_players(team):
+def get_players(team):
     with open(base_dir + '/data/rosters.json') as rosters:
         r = json.load(rosters)
-        return r.get(team)
+        players = r.get(team)
+        return { 'players': players }

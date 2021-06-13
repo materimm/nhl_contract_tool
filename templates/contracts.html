@@ -7,24 +7,56 @@
   <div class="row">
     <h1>NHL Contract Predictor</h1>
   </div>
-
   <div class="row">
+    <h6>By: Morey (<a href="https://twitter.com/moman939" target="_blank">@moman939</a>)</h6>
+  </div>
+  <div class="row">
+    <span>Data used from: <a href="http://moneypuck.com/" target="_blank">moneypuck</a> and <a href="https://www.capfriendly.com/" target="_blank">capfriendly</a></span>
+  </div>
+
+  <div class="row mt-2">
     <span class="label">Teams:</span>
     <select class="ml-3 form-select" name="teams" id="teams" onchange="getPlayers()">
       <option value="none" selected>Pick a team to see players</option>
-      <option value="Coyotes">Arizona Coyotes</option>
-      <option value="Sabres">Buffalo Sabres</option>
-      <option value="Hurricanes">Carolina Hurricanes</option>
-      <option value="Devils">New Jersey Devils</option>
+      <option value="ducks">Anaheim Ducks</option>
+      <option value="coyotes">Arizona Coyotes</option>
+      <option value="bruins">Boston Bruins</option>
+      <option value="sabres">Buffalo Sabres</option>
+      <option value="flames">Calgary Flames</option>
+      <option value="hurricanes">Carolina Hurricanes</option>
+      <option value="blackhawks">Chicago Blackhawks</option>
+      <option value="avalanche">Colorado Avalanche</option>
+      <option value="bluejackets">Columbus Blue Jackets</option>
+      <option value="stars">Dallas Stars</option>
+      <option value="redwings">Detroit Red Wings</option>
+      <option value="oilers">Edmonton Oilers</option>
+      <option value="panther">Florida Panthers</option>
+      <option value="kings">Los Angeles Kings</option>
+      <option value="wild">Minnesota Wild</option>
+      <option value="canadiens">Montreal Canadiens</option>
+      <option value="predators">Nashville Predators</option>
+      <option value="devils">New Jersey Devils</option>
+      <option value="islanders">New York Islanders</option>
+      <option value="rangers">New York Rangers</option>
+      <option value="senators">Ottawa Senators</option>
+      <option value="flyers">Philadelphia Flyers</option>
+      <option value="penguins">Pittsburgh Penguins</option>
+      <option value="sharks">San Jose Sharks</option>
+      <option value="kraken">Seattle Kraken</option>
+      <option value="blues">St. Louis Blues</option>
+      <option value="lightning">Tampa Bay Lightning</option>
+      <option value="leafs">Toronto Leafs</option>
+      <option value="canucks">Vancouver Canucks</option>
+      <option value="goldenknights">Vegas Golden Knights</option>
+      <option value="capitals">Washington Capitals</option>
+      <option value="jets">Winnipeg Jets</option>
     </select>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
     <span class="label">Players:</span>
     <select class="ml-3 form-select" name="players" id="players" disabled>
       <option value="none" selected>Select a team first to select a player</option>
-      <option value="Jack Eichel">Jack Eichel</option>
-      <option value="Jeff Skinner">Jeff Skinner</option>
     </select>
   </div>
 

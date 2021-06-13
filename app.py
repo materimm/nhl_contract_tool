@@ -20,4 +20,5 @@ def contracts():
 def get_players(team=None):
     team = request.args.get('team')
     players = api.get_players(team)
+    print(players)
     return players
