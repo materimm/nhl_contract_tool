@@ -20,5 +20,12 @@ def contracts():
 def get_players(team=None):
     team = request.args.get('team')
     players = api.get_players(team)
-    print(players)
     return players
+
+
+@app.route('/get_contract', methods=['GET'])
+def get_contract(team=None, player=None):
+    team = request.args.get('team')
+    player = request.args.get('player')
+    obj = api.get_contract(team, player)
+    return obj
