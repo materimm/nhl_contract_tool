@@ -119,9 +119,9 @@ def get_prev_3_years_stats(contracts_df, path):
 
 
 def format_contract_info():
-    base_dir = str(Path(os.getcwd()).parents[0])
-    contracts_df = pd.read_csv(base_dir + '\\NHLData\\all_contracts.csv')
-    contracts_df['signing_date'] = pd.to_datetime(contracts_df.signing_date)
+    base_dir = str(Path(os.getcwd()))#.parents[0])
+    contracts_df = pd.read_csv(base_dir + '\\data\\all_contracts.csv')
+    contracts_df['signing_date'] = pd.to_datetime(contracts_df.signing_date, errors='coerce')
     contracts_df = contracts_df.sort_values(['name', 'signing_date'], ascending=(True, False))
 
     contracts_df['age_at_signing'] = contracts_df.apply(lambda row: get_age_at_signing(row), axis=1)
@@ -141,7 +141,7 @@ def format_contract_info():
     contracts_df.drop('expiration_status', axis=1, inplace=True)
     #filter out contracts signed before 2011 since we dont have 3 years of stats data
     contracts_df = contracts_df[contracts_df['signing_date'].dt.year >= 2011]
-    stats_obj = get_prev_3_years_stats(contracts_df, base_dir + '\\NHLData\\moneypuck\\skaters\\{}-{}-skaters.csv')
+    stats_obj = get_prev_3_years_stats(contracts_df, base_dir + '\\data\\moneypuck\\skaters\\{}-{}-skaters.csv')
     contracts_df['prev_1_goals'] = stats_obj['p1_goals']
     contracts_df['prev_2_goals'] = stats_obj['p2_goals']
     contracts_df['prev_3_goals'] = stats_obj['p3_goals']
@@ -176,8 +176,8 @@ def plot_histo():
 
 def binning(features):
     if features is None:
-        base_dir = str(Path(os.getcwd()).parents[0])
-        features = pd.read_csv(base_dir + '\\NHLData\\features.csv')
+        base_dir = str(Path(os.getcwd())) #.parents[0])
+        features = pd.read_csv(base_dir + '\\data\\features.csv')
 
     for i in ['1', '2', '3']:
         features['prev_' + i + '_goals_bin_0-9'] = features.apply(lambda row: get_goals_assists_bin(row, 'goals', i, 1), axis=1)
@@ -275,8 +275,8 @@ def get_goals_assists_bin(row, stat, prev, bin):
 
 
 def get_player_features(name):
-    base_dir = str(Path(os.getcwd()).parents[0])
-    player_df = pd.read_csv(base_dir + '\\NHLData\\all_contracts.csv')
+    base_dir = str(Path(os.getcwd())) #.parents[0])
+    player_df = pd.read_csv(base_dir + '\\data\\all_contracts.csv')
     player_df = player_df.loc[player_df.name==name]
     player_df['signing_date'] = pd.to_datetime(player_df.signing_date)
     player_df = player_df[player_df.signing_date == player_df.signing_date.max()]
@@ -291,7 +291,7 @@ def get_player_features(name):
     player_df.drop('expiration_status', axis=1, inplace=True)
     player_df.drop('cap_hit_percentage_at_signing', axis=1, inplace=True)
 
-    path = base_dir + '\\NHLData\\moneypuck\\skaters\\{}-{}-skaters.csv'
+    path = base_dir + '\\data\\moneypuck\\skaters\\{}-{}-skaters.csv'
     counter = 3
     this_year = dt.date.today().year
     for y in list(range(this_year-3, this_year)):
@@ -323,8 +323,9 @@ def get_player_features(name):
     return binning(player_df)
 
 
-
+# Step 1: download moneypuck skater data (moneypuck_dowloader.py)
+# Step 2: download capfriendly contract (capfiendly_scraper.py)
+# Step 3: format contract info -> features.csv
 #format_contract_info()
+# Step 4 use tthe get_player_features() funtion to get features to pass to model
 #get_player_features('Jeff Skinner')
-#format_contract_info()
-#binning(None)

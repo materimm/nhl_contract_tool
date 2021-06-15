@@ -41,12 +41,12 @@ function getContract() {
     data:{'player': player, 'team' : team},
     url: "/get_contract",
     success: function(data) {
-      console.log(data);
       $("#name").text(data.player);
       $("#position").text(data.position);
       $("#teamName").text($("#teams option:selected").text());
       $("#age").text(data.age);
       $("#teamLogo").attr("src", data.logo);
+      $("#aav").text(data.aav);
       $("#results").removeAttr("style");
     }});
 }
