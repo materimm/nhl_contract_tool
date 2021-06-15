@@ -44,8 +44,12 @@ function getContract() {
       $("#name").text(data.player);
       $("#position").text(data.position);
       $("#teamName").text($("#teams option:selected").text());
-      $("#age").text(data.age);
+      $("#age").text(data.age + " years old");
       $("#teamLogo").attr("src", data.logo);
+      $("#gp").text(data.stats.gp + " GP");
+      $("#goals").text(data.stats.goals + " G");
+      $("#assists").text(data.stats.assists + " A");
+      $("#points").text(data.stats.points + " P");
       $("#aav").text(data.aav);
       $("#results").removeAttr("style");
     }});

@@ -32,6 +32,7 @@ def get_contract(team, player):
         'team': team,
         'logo': logo,
         'player': player,
+        'stats': get_player_stats(player),
         'position': position,
         'age': age,
         'aav': aav
@@ -40,11 +41,26 @@ def get_contract(team, player):
 
 
 def get_player_age_and_position(player):
-    df = pd.read_csv(base_dir + '\\data\\all_contracts.csv')
+    df = pd.read_csv(base_dir + '/data/all_contracts.csv')
     df = df.loc[df['name'] == player]
     position = df.iloc[0].position
     age = str(df.iloc[0].current_age)
     return age, position
+
+
+def get_player_stats(player):
+    df = pd.read_csv(base_dir + '/data/moneypuck/skaters/2020-2021-skaters.csv')
+    df = df.loc[(df['name']==player) & (df['situation']=='all')]
+    gp = df.iloc[0].games_played
+    goals = int(df.iloc[0].I_F_goals)
+    points = int(df.iloc[0].I_F_points)
+    assists = points - goals
+    return {
+        'gp': str(gp),
+        'goals': str(goals),
+        'assists': str(assists),
+        'points': str(points)
+    }
 
 
 def get_logo(team):
